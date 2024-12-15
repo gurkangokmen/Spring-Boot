@@ -23,10 +23,10 @@ public class CruddemoApplication {
 
 			// findInstructor(appDAO);
 
+			// First delete instructor, after instructor_detail
 			deleteInstructor(appDAO);
 		};
 	}
-
 	private void deleteInstructor(AppDAO appDAO) {
 
 		int theId = 1;

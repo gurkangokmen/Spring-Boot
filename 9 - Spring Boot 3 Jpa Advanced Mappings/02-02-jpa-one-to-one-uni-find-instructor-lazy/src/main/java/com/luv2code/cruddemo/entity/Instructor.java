@@ -99,7 +99,8 @@ public class Instructor {
                 ", instructorDetail=" + instructorDetail +
                 '}';
     }
-    */
+     */
+
 
     @Override
     public String toString() {
@@ -110,6 +111,7 @@ public class Instructor {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }
 
 

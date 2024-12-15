@@ -57,6 +57,11 @@ public class CruddemoApplication {
 		System.out.println("Finding courses for instructor id: " + theId);
 		List<Course> courses = appDAO.findCoursesByInstructorId(theId);
 
+
+
+
+		//System.out.println("Courses: " + courses); //It is used this code instructor fetched or not:
+
 		// Test before setCourses.. :D it will throw exception :0
 
 		/**

@@ -13,9 +13,9 @@ public class CricketCoach implements Coach {
 
     /**
      * Call Order:
-     * Constructor
-     * PostConstruct (THINK like methods, because doMyStartupStuff is already is a method :D so constructor is first,later bean lifecycle methods)
-     * PreDestroy
+     * <br>Constructor
+     * <br>PostConstruct (THINK like methods, because doMyStartupStuff is already is a method :D so constructor is first,later bean lifecycle methods)
+     * <br>PreDestroy
      */
     // define our init method
     @PostConstruct

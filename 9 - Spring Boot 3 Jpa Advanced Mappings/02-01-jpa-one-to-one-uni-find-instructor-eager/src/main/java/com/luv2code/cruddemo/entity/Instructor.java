@@ -1,6 +1,7 @@
 package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Lazy;
 
 @Entity
 @Table(name="instructor")

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     // define a private field for the dependency
-
+    // You should use @Primary or @Qualifier, if you have multiple bean.
     @Qualifier("cricketCoach")
     @Autowired //Necessary
     private Coach myCoach;

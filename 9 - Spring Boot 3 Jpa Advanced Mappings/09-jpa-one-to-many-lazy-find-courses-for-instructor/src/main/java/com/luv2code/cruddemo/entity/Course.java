@@ -61,6 +61,7 @@ public class Course {
         this.instructor = instructor;
     }
 
+
     @Override
     public String toString() {
         return "Course{" +
@@ -68,4 +69,21 @@ public class Course {
                 ", title='" + title + '\'' +
                 '}';
     }
+
+    // It is used this query fetch instructor or not: TypedQuery<Course> query = entityManager.createQuery("from Course where instructor.id = :data", Course.class);
+
+    // Test Results:
+    // Courses: [Course{id=10, title='Air Guitar - The Ultimate Guide', instructor=Instructor{id=1, firstName='Susan', lastName='Public', email='susan.public@luv2code.com', instructorDetail=InstructorDetail{id=1, youtubeChannel='http://www.youtube.com', hobby='Video Games'}}}, Course{id=11, title='The Pinball Masterclass', instructor=Instructor{id=1, firstName='Susan', lastName='Public', email='susan.public@luv2code.com', instructorDetail=InstructorDetail{id=1, youtubeChannel='http://www.youtube.com', hobby='Video Games'}}}]
+
+    // Answer: Yes, it fetched instructor.
+    /**
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", instructor=" + instructor +
+                '}';
+    }
+     */
 }
