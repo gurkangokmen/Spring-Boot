@@ -1,29 +1,52 @@
 # Spring Boot Revise
 
-## ❤️‍🔥PDF-10 
-## Aspect-Oriented Programming (AOP)
+## 10 - Spring Boot 3 AOP
 
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
+## Table of Contents
+
+1. [Problem & Solutions](#problem--solutions)
+2. [The Best Solution (AOP)](#the-best-solution-aop)
+3. [Dependency](#dependency)
+4. [Pointcut Expression Language](#pointcut-expression-language)
+5. [Advice](#jparepository)
+    * [@Before Advice](#before-advice)
+    * [@AfterReturning Advice](#afterreturning-advice)
+        * [Modify Return Value](#modify-return-value)
+    * [@AfterThrowing](#afterthrowing-advice)
+        * [Access the Exception](#access-the-exception)
+    * [@After Advice](#after-advice)        
+    * [@Around Advice](#around-advice)
+        * [Handle Exception](#handle-exception)
+        * [Rethrow Exception](#rethrow-exception)
+6. [Reuse Advice](#reuse-advice)
+    * [Problem (Reuse Advice)](#problem-reuse-advice)
+    * [Solution (Reuse Advice)](#solution-reuse-advice)
+7. [Combine Advices](#combine-advices)
+    * [Problem (Combine Advices)](#problem-combine-advices)
+    * [Solution (Combine Advices)](#solution-combine-advices)
+8. [Order Of Advices](#order-of-advices)
+9. [Reading Method Arguments with JoinPoints](#reading-method-arguments-with-joinpoints)
 
 
-### We need to add `Logging and Security` to our code
+## Problem & Solutions
 
-### But There is a `PROBLEM!`
+##### We need to add `Logging and Security` to our code
 
-### We cannot write logging and security codes every dao, service and etc...
+##### But There is a `PROBLEM!`
 
-### It create problems...
+##### We cannot write logging and security codes every dao, service and etc...
 
-### `Code Tangling`
-### `Code Scattering` (If we need to change logging or security code, We have to update ALL classes)
+##### It create problems...
 
-### `Other possible solutions?`
+##### `Code Tangling`
+##### `Code Scattering` (If we need to change logging or security code, We have to update ALL classes)
 
-### `Inheritance?` → no multiple inheritance
-### `Delegation?` → Still would need to update classes if we wanted to add new feature
+##### `Other possible solutions?`
 
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
-## THE BEST SOLUTION `Aspect-Oriented Programming (AOP)`
+##### `Inheritance?` → no multiple inheritance
+##### `Delegation?` → Still would need to update classes if we wanted to add new feature
+
+## The Best Solution (AOP)
 ```
 Aspects
 • Aspect can be reused at multiple locations
@@ -68,7 +91,7 @@ Advice Types
 • After throwing advice: run after method (if exception thrown)
 • Around advice: run before and after method
 ```
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
+
 ## Dependency
 ```
 <dependency>
@@ -81,14 +104,14 @@ Advice Types
 
 `No need to explicitly use @EnableAspectJAutoProxy … we get it for free`
 
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
+
 ## Pointcut Expression Language
 ![Screenshot 2024-07-06 155252](https://github.com/gurkangokmen/algorithms/assets/122023578/be0788fd-dd5c-4af4-b323-d05a412e29b9)
 ![Screenshot 2024-07-06 155626](https://github.com/gurkangokmen/algorithms/assets/122023578/ebedd0f9-151f-43e5-922d-c094f3b7ee62)
 
+## Advice
 
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
-## @Before Advice 
+### @Before Advice 
 ```
 Advice Types
 • [@Before] Before advice: run before the method
@@ -118,7 +141,7 @@ public class MyDemoLoggingAspect {
 }
 ```
 
-## @AfterReturning Advice
+### @AfterReturning Advice
 ```
 Advice Types
 • Before advice: run before the method
@@ -142,7 +165,7 @@ Advice Types
 
     }
 ```
-### Modify Return Value
+#### Modify Return Value
 
 ```
 @AfterReturning(
@@ -185,7 +208,7 @@ Advice Types
     }
 ```
 
-## @AfterThrowing Advice
+### @AfterThrowing Advice
 ```
 Advice Types
 • Before advice: run before the method
@@ -251,7 +274,7 @@ public List<Account> findAccounts(boolean tripWire) {
 }
 ```
 
-### Access the Exception
+#### Access the Exception
 ```
 @AfterThrowing(
             pointcut = "execution(* com.luv2code.aopdemo.dao.AccountDAO.findAccounts(..))",
@@ -268,7 +291,7 @@ public List<Account> findAccounts(boolean tripWire) {
     }
 ```
 
-## @After Advice
+### @After Advice
 
 ```
 Advice Types
@@ -293,7 +316,7 @@ public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint) {
 
 `The @After advice does not have access return value`
 
-## @Around Advice
+### @Around Advice
 ```
 Advice Types
 • Before advice: run before the method
@@ -335,7 +358,7 @@ Advice Types
 ```
 
 `You can handle / swallow /stop the exception `
-### Handle Exception
+#### Handle Exception
 ```
 @Around("execution(* com.luv2code.aopdemo.service.*.getFortune(..))")
 public Object aroundGetFortune(
@@ -378,7 +401,7 @@ public Object aroundGetFortune(
     return result;
 }
 ```
-### Rethrow Exception
+#### Rethrow Exception
 ```
 @Around("execution(* com.luv2code.aopdemo.service.*.getFortune(..))")
 public Object aroundGetFortune(
@@ -419,10 +442,11 @@ public Object aroundGetFortune(
 }
 ```
 
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
-## Problem 'Reuse Advice'
+## Reuse Advice
+
+### Problem (Reuse Advice)
 `How can we reuse a pointcut expression?`
-## Solution
+### Solution (Reuse Advice)
 ```
 @Aspect
 @Component
@@ -448,10 +472,11 @@ public class MyDemoLoggingAspect {
     }
 }
 ```
+## Combine Advices
 
-## Problem 'Combine Advices'
+### Problem (Combine Advices)
 `How to apply multiple pointcut expressions to single advice?`
-## Solution
+### Solution (Combine Advices)
 ![Screenshot 2024-07-06 164118](https://github.com/gurkangokmen/algorithms/assets/122023578/52e3b7ac-ef28-4505-8e83-0b999b6c886f)
 ![Screenshot 2024-07-06 164126](https://github.com/gurkangokmen/algorithms/assets/122023578/ff955922-58b2-466b-b21a-8e27306142d0)
 
@@ -493,9 +518,9 @@ public class MyDemoLoggingAspect {
 ```
 
 
-## Problem 'Order of Advices'
+## Order of Advices
 `How to control the order of advices being applied?`
-## Solution
+
 ```
 @Order annotation
 
@@ -509,7 +534,6 @@ public class MyDemoLoggingAspect {
 ![Screenshot 2024-07-06 165218](https://github.com/gurkangokmen/algorithms/assets/122023578/0d91e84f-f0c6-4a91-b89f-4af5745f8e93)
 
 
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛
 
 ## Reading Method Arguments with JoinPoints
 ```
@@ -549,4 +573,3 @@ public class MyDemoLoggingAspect {
 
 }
 ```
-## 💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛💛

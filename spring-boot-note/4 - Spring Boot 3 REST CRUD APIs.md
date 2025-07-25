@@ -46,18 +46,18 @@ public Student getStudent(@PathVariable int studentId) {
 
 ```java
 @GetMapping("/students/{studentId}")
-    public Student getStudent(@PathVariable int studentId) {
+public Student getStudent(@PathVariable int studentId) {
 
-        // just index into the list ... keep it simple for now
+    // just index into the list ... keep it simple for now
 
-        // check the studentId again list size
+    // check the studentId again list size
 
-        if ( (studentId >= theStudents.size()) || (studentId < 0)) {
-            throw new StudentNotFoundException("Student id not found - " + studentId);
-        }
-
-        return theStudents.get(studentId);
+    if ( (studentId >= theStudents.size()) || (studentId < 0)) {
+        throw new StudentNotFoundException("Student id not found - " + studentId);
     }
+
+    return theStudents.get(studentId);
+}
 
 
 

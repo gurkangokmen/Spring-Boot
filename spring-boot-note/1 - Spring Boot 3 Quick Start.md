@@ -5,6 +5,7 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Spring Boot Solution](#spring-boot-solution)
+	* [Exploring Auto Configuration](#exploring-auto-configuration)
 3. [Maven Solution](#maven-solution)
 4. [Dependency(Project) Coordinates](#dependencyproject-coordinates)
 5. [Spring Boot Starter Parent](#spring-boot-starter-parent)
@@ -20,11 +21,13 @@
 ```
 Why Spring?
 
-• Simplify Java Enterprise Development
+⭐ Simplify Java Enterprise Development
 ```
 
 ```
-Spring Boot 3 requires JDK 17 or higher
+Requirements:
+
+⭐ Spring Boot 3 requires JDK 17 or higher
 ```
 
 # Spring Boot Solution
@@ -36,6 +39,17 @@ Spring Boot 3 requires JDK 17 or higher
 4- Provide an embedded HTTP server
 ```
 
+## Exploring Auto Configuration
+
+```
+⭐ Dispatcher Servlet (DispatcherServletAutoConfiguration)
+
+⭐ Embedded Servlet Container - Tomcat is the default (EmbeddedWebServerFactoryCustomizerAutoConfiguration)
+
+⭐ Default Error Pages (ErrorMvcAutoConfiguration)
+
+⭐ Bean <-> JSON (JacksonHttpMessageConvertersConfiguration)
+```
 # Maven Solution
 
 ```
@@ -196,13 +210,13 @@ server.servlet.session.timeout=15m # HTTP session time out (Default: 30m)
 • Core Properties
 # Logging Levels
 #
-# TRACE
-# DEBUG
-# INFO
-# WARN
-# ERROR
-# FATAL
-# OFF
+# 🟢TRACE
+# 🟢DEBUG
+# 🟢INFO
+# 🔴WARN
+# 🔴ERROR
+# 🔴FATAL
+# 🔵OFF
 
 # Log levels severity mapping
 logging.level.org.springframework=DEBUG #Default: INFO

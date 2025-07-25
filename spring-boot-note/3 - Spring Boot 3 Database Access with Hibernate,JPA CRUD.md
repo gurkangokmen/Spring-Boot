@@ -150,13 +150,13 @@ entityManager.find(Student.class, id); //If not found, returns null
 ```java
 // Name of JPA Entity … the class name
 
-        // this is NOT the name of the database table
-        // All JPQL syntax is based on
-        // entity name and entity fields
-        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student", Student.class);
+// this is NOT the name of the database table
+// All JPQL syntax is based on
+// entity name and entity fields
+TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student", Student.class);
 
-        // return query results
-        return theQuery.getResultList();
+// return query results
+return theQuery.getResultList();
 ```
 
 ### Find By Last Name
