@@ -28,5 +28,5 @@ Bu, PID 1234'ün hangi uygulamaya ait olduğunu gösterir.
 
 ```bash
 taskkill /PID 1234 /F
-```bash
+```
 
